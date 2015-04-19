@@ -1,0 +1,176 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView"
+            android:layout_gravity="end">
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	              xmlns:tools="http://schemas.android.com/tools"
+	              android:layout_width="match_parent"
+	              android:layout_height="wrap_content"
+	              android:paddingLeft="@dimen/activity_horizontal_margin"
+	              android:paddingRight="@dimen/activity_horizontal_margin"
+	              android:paddingTop="@dimen/activity_vertical_margin"
+	              android:paddingBottom="@dimen/activity_vertical_margin"
+	              android:orientation="vertical"
+	              tools:context="com.orhundalabasmaz.antibyteapps.matchitifyoucan.activity.OptionsActivity">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:text="Game board"
+				android:id="@+id/tv_gameBoard"
+				android:layout_alignParentTop="true"
+				android:layout_alignParentLeft="true"
+				android:layout_alignParentStart="true"/>
+
+			<RadioGroup
+				android:id="@+id/rg_gameBoard"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/textView2"
+				android:layout_alignParentLeft="true"
+				android:layout_alignParentStart="true">
+
+				<RadioButton
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="2 x 2"
+					android:id="@+id/rb_2x2"/>
+
+				<RadioButton
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="4 x 4"
+					android:id="@+id/rb_4x4"/>
+
+				<RadioButton
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="6 x 6"
+					android:id="@+id/rb_6x6"/>
+			</RadioGroup>
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="15dp"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:text="Game Type"
+				android:id="@+id/tv_type"
+				android:layout_alignParentTop="true"
+				android:layout_alignParentLeft="true"
+				android:layout_alignParentStart="true"/>
+
+			<RadioGroup
+				android:id="@+id/rg_gameType"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/textView2"
+				android:layout_alignParentLeft="true"
+				android:layout_alignParentStart="true">
+
+				<RadioButton
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Numbers"
+					android:id="@+id/rb_numbers"/>
+
+				<RadioButton
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="AlphaNumeric"
+					android:id="@+id/rb_alphaNumeric"/>
+
+				<RadioButton
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Image"
+					android:id="@+id/rb_image"/>
+
+				<RadioButton
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Sound"
+					android:id="@+id/rb_sound"/>
+			</RadioGroup>
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="15dp"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:text="Game Level"
+				android:id="@+id/tv_level"
+				android:layout_alignParentTop="true"
+				android:layout_alignParentLeft="true"
+				android:layout_alignParentStart="true"/>
+
+			<RadioGroup
+				android:id="@+id/rg_gameLevel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/textView2"
+				android:layout_alignParentLeft="true"
+				android:layout_alignParentStart="true">
+
+				<RadioButton
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Easy"
+					android:id="@+id/rb_easy"/>
+
+				<RadioButton
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Medium"
+					android:id="@+id/rb_medium"/>
+
+				<RadioButton
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Hard"
+					android:id="@+id/rb_hard"/>
+
+				<RadioButton
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Impossible"
+					android:id="@+id/rb_impossible"/>
+			</RadioGroup>
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="OK"
+				android:onClick="setOptions"
+				android:id="@+id/bt_ok"/>
+		</LinearLayout>
+	</LinearLayout>
+</ScrollView>
+

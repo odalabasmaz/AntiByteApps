@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              tools:context=".MainActivity"
+              android:background="#ff172e50"
+              android:orientation="vertical">
+
+	<FrameLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:background="#ff162f55"
+		android:fitsSystemWindows="true">
+
+		<ImageView
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:id="@+id/imageView"
+			android:src="@drawable/cubuklu01"
+			android:scaleType="fitXY"
+			android:layout_gravity="center"/>
+
+		<ProgressBar
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/progressBar2"
+			android:layout_marginBottom="20dp"
+			android:layout_gravity="bottom|center_horizontal"/>
+
+		<TextView
+			android:layout_width="322dp"
+			android:layout_height="wrap_content"
+			android:textAppearance="@style/TextAppearance.AppCompat.Small"
+			android:text="Maç bilgileri fenerbahce.org adresinden alınmıştır."
+			android:id="@+id/textView"
+			android:layout_gravity="center_horizontal|bottom"
+			android:phoneNumber="true"
+			android:textColor="#fffffb25"
+			android:textAlignment="center"/>
+	</FrameLayout>
+
+</LinearLayout>

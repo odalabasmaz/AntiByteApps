@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+
+android {
+	compileSdkVersion 21
+	buildToolsVersion "21.1.2"
+
+	defaultConfig {
+		applicationId "com.orhundalabasmaz.antibyteapps.matchitifyoucan"
+		minSdkVersion 15
+		targetSdkVersion 21
+		versionCode 1
+		versionName "0.3"
+	}
+//	signingConfigs {
+//		release {
+//			storeFile file('/home/orhun/workspace/android/other/keystore/antibyteapps.jks')
+//			storePassword System.console().readPassword("\nKeystore password: ")
+//			keyAlias "antibyteapps"
+//			keyPassword System.console().readPassword("\nKey password: ")
+//		}
+//	}
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//			signingConfig signingConfigs.release
+		}
+	}
+}
+
+dependencies {
+	compile fileTree(include: ['*.jar'], dir: 'libs')
+	compile 'com.android.support:appcompat-v7:21.0.3'
+	compile project(':middleware')
+	compile 'com.google.android.gms:play-services:6.5.87'
+}

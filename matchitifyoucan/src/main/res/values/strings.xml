@@ -1,0 +1,16 @@
+<resources>
+	<string name="app_name">Match It If You Can!</string>
+	<string name="app_name_visible">Match It If You Can!</string>
+
+	<string name="hello_world">Hello world!</string>
+	<string name="action_settings">Settings</string>
+	<string name="title_activity_main_menu">MainMenuActivity</string>
+	<string name="title_activity_simple_game">SimpleGameActivity</string>
+	<string name="title_activity_welcome">WelcomeActivity</string>
+	<string name="title_activity_options">OptionsActivity</string>
+
+	<!-- This ad id is only for test purpose. To be changed on prod. -->
+	<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+	<string name="device_id">352605051647501</string>
+	<string name="title_activity_ad">AdActivity</string>
+</resources>
