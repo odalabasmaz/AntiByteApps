@@ -1,5 +1,8 @@
 <resources>
 	<string name="app_name">Middleware</string>
 
+	<!-- This ad id is only for test purpose. To be changed on prod. -->
 	<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+	<string name="device_id">352605051647501</string>
+	<string name="title_activity_ad">AdActivity</string>
 </resources>

@@ -8,8 +8,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdSize;
 import com.orhundalabasmaz.antibyteapps.fenerinmacivar.network.EventStatus;
 import com.orhundalabasmaz.antibyteapps.fenerinmacivar.network.MatchEvent;
+import com.orhundalabasmaz.antibyteapps.middleware.base.AdInfo;
 import com.orhundalabasmaz.antibyteapps.middleware.base.BaseActivity;
 
 import org.apache.commons.lang3.StringUtils;
@@ -28,6 +30,16 @@ public class EventsActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_events);
 		initEvents();
+	}
+
+	@Override
+	protected AdInfo getAdInfo() {
+		String adUnitId = getString(R.string.banner_ad_unit_id);
+		String deviceId = getString(R.string.device_id);
+		return new AdInfo(R.id.adView,
+				AdSize.SMART_BANNER,
+				adUnitId,
+				deviceId);
 	}
 
 /*	private void initEvents_old() {

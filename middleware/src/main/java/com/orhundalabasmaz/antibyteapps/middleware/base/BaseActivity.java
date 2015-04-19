@@ -173,7 +173,7 @@ public abstract class BaseActivity
 	//todo API 17 öncesinde böyle kullanmak zorundayız !!!!
 
 	/**
-	 * Generate a value suitable for use in {@link #setId(int)}.
+	 * Generate a value suitable for use in {@link # setId(int)}.
 	 * This value will not collide with ID values generated at build time by aapt for R.id.
 	 *
 	 * @return a generated ID value
@@ -242,6 +242,7 @@ public abstract class BaseActivity
 	}
 
 	protected AdInfo getAdInfo() {
+		// must be implemented in order to show Ads
 		return null;
 	}
 
