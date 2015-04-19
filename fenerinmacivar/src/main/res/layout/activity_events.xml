@@ -13,7 +13,7 @@
 
 	<RelativeLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
+		android:layout_height="wrap_content"
 		android:background="@android:color/holo_blue_dark"
 		android:paddingLeft="1dp"
 		android:paddingRight="1dp"
@@ -21,7 +21,7 @@
 		android:paddingBottom="0dp">
 
 		<ScrollView
-			android:layout_width="match_parent"
+			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:id="@+id/scrollView"
 			android:layout_alignParentBottom="true"
@@ -39,7 +39,7 @@
 	<fragment
 		android:id="@+id/adsFragment"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="0dp"
 		android:layout_centerHorizontal="true"
 		android:layout_alignParentBottom="true"
 		android:name="com.orhundalabasmaz.antibyteapps.middleware.fragment.AdsFragment"

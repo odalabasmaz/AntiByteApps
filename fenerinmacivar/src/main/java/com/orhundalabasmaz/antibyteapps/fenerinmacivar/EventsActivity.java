@@ -64,19 +64,22 @@ public class EventsActivity extends BaseActivity {
 		int index = 0;
 		int eventIndex = 0;
 		EventStatus eventStatus;
+		String lastEventDate = null;
 		final String TAB = "\t";
 		final String TAB2 = TAB + TAB;
 		for (MatchEvent event : events) {
 			final String eventDate = event.getEventDate();
 			eventStatus = getEventStatus(eventDate);
 			if (!showPastEvents && EventStatus.PAST.equals(eventStatus)) continue;
-			addValue(tableLayout, eventDate, index++, eventIndex, eventStatus);
+			if (!eventDate.equals(lastEventDate))
+				addValue(tableLayout, eventDate, index++, eventIndex, eventStatus);
 			addValue(tableLayout, TAB + event.getEventHeader(), index++, eventIndex, eventStatus);
 			addValue(tableLayout, TAB2 + event.getEventName(), index++, eventIndex, eventStatus);
 			addValue(tableLayout, TAB2 + event.getEventPlaceAndTime(), index++, eventIndex, eventStatus);
 			if (StringUtils.isNotBlank(event.getEventBroadcaster()))
 				addValue(tableLayout, TAB2 + event.getEventBroadcaster(), index++, eventIndex, eventStatus);
 			++eventIndex;
+			lastEventDate = eventDate;
 		}
 	}
 
