@@ -6,6 +6,5 @@ A workspace on android applications;
 - Sample Projects as;
   - Match It If You Can (Game)
   - Fenerbahçe SK Match Events (Match Schedules of Football Team)
-   
-
   
+E-mail: antibyteapps@gmail.com
