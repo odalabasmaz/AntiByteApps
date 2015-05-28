@@ -57,10 +57,15 @@ public class EventsActivity extends BaseActivity {
 	private static final DateFormat sdf = new SimpleDateFormat("yyyyMMdd", LOCALE_TR);
 
 	private void initEvents() {
+		final TableLayout tableLayout = findTableLayoutById(R.id.table);
+		final List<MatchEvent> events = (List<MatchEvent>) getIntent().getSerializableExtra("EVENTS");
+		if (events == null) {
+			addWarningMessageToTable(tableLayout);
+			return;
+		}
+
 		boolean showPastEvents = false;
 		now = Calendar.getInstance();
-		final List<MatchEvent> events = (List<MatchEvent>) getIntent().getSerializableExtra("EVENTS");
-		final TableLayout tableLayout = findTableLayoutById(R.id.table);
 		int index = 0;
 		int eventIndex = 0;
 		EventStatus eventStatus;
@@ -115,9 +120,10 @@ public class EventsActivity extends BaseActivity {
 		else return -1;
 	}
 
-	private void addValue(final TableLayout tableLayout, final String value, final int index, final int eventIndex, final EventStatus eventStatus) {
+	private void addValue(final TableLayout tableLayout, final String value,
+	                      final int index, final int eventIndex, final EventStatus eventStatus) {
 		TableRow row = new TableRow(this);
-		row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT));
+		row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT));
 		TextView view = new TextView(this);
 		view.setText(value);
 		row.addView(view);
@@ -143,6 +149,17 @@ public class EventsActivity extends BaseActivity {
 
 		}
 		tableLayout.addView(row, index);
+	}
+
+	private void addWarningMessageToTable(TableLayout tableLayout) {
+		final TableRow row = new TableRow(this);
+		row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT));
+		final TextView view = new TextView(this);
+		final String value = getString(R.string.warning_message);
+		view.setText(value);
+		view.setTextColor(Color.YELLOW);
+		row.addView(view);
+		tableLayout.addView(row, 0);
 	}
 
 	@Override

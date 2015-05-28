@@ -56,23 +56,23 @@
 
 			<ScrollView
 				android:id="@+id/scrollView"
-				android:layout_width="wrap_content"
+				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:fillViewport="true">
 				<!--android:layout_alignParentBottom="true"
 				android:layout_centerHorizontal="true"-->
 
-				<HorizontalScrollView
+				<!--<HorizontalScrollView
 					android:id="@+id/horizontalScrollView"
 					android:layout_width="match_parent"
-					android:layout_height="wrap_content">
+					android:layout_height="wrap_content">-->
 
-					<TableLayout
-						android:id="@+id/table"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content">
-					</TableLayout>
-				</HorizontalScrollView>
+				<TableLayout
+					android:id="@+id/table"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content">
+				</TableLayout>
+				<!--</HorizontalScrollView>-->
 			</ScrollView>
 		</LinearLayout>
 

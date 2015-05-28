@@ -28,17 +28,18 @@ public class MainActivity extends BaseActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		final MainActivity thiz = this;
 		final String FB_URL = "http://www.fenerbahce.org/index.asp";
 		new GetContentAsyncTask() {
 			@Override
 			protected void onPostExecute(final Document doc) {
-				final FBConnect fbConnect = FBConnect.getInstance();
-				final List<MatchEvent> matchEvents = fbConnect.getEvents(doc);
-				Map<String, Serializable> objects = new HashMap<>();
-				objects.put("EVENTS", (Serializable) matchEvents);
+				final Map<String, Serializable> objects = new HashMap<>();
+				if (doc != null) {
+					final FBConnect fbConnect = FBConnect.getInstance();
+					final List<MatchEvent> matchEvents = fbConnect.getEvents(doc);
+					objects.put("EVENTS", (Serializable) matchEvents);
+				}
 				startNextActivity(EventsActivity.class, objects);
-				thiz.finish();
+				MainActivity.this.finish();
 			}
 		}.execute(FB_URL);
 	}

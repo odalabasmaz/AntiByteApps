@@ -21,8 +21,7 @@ public class GetContentAsyncTask extends AsyncTask<String, Void, Document> {
 		try {
 			final String url = params[0];
 			doc = Jsoup.connect(url).timeout(TIMEOUT).ignoreContentType(true).get();
-//			doc = Jsoup.parse(new URL(url).openStream(), "iso-8859-9", url);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return doc;
