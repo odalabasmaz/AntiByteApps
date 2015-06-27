@@ -62,11 +62,9 @@ public class EventsActivity extends BaseActivity {
 		if (events == null) {
 			addWarningMessageToTable(tableLayout);
 			return;
-		} else if (events.isEmpty()) {
-			addNoEventFoundMessageToTable(tableLayout);
-			return;
 		}
 
+		boolean isAnyEvent = false;
 		boolean showPastEvents = false;
 		now = Calendar.getInstance();
 		int index = 0;
@@ -78,7 +76,12 @@ public class EventsActivity extends BaseActivity {
 		for (MatchEvent event : events) {
 			final String eventDate = event.getEventDate();
 			eventStatus = getEventStatus(eventDate);
-			if (!showPastEvents && EventStatus.PAST.equals(eventStatus)) continue;
+			if (!showPastEvents && EventStatus.PAST.equals(eventStatus)) {
+				continue;
+			} else {
+				isAnyEvent = true;
+			}
+
 			if (!eventDate.equals(lastEventDate))
 				addValue(tableLayout, eventDate, index++, eventIndex, eventStatus);
 			addValue(tableLayout, TAB + event.getEventHeader(), index++, eventIndex, eventStatus);
@@ -88,6 +91,10 @@ public class EventsActivity extends BaseActivity {
 				addValue(tableLayout, TAB2 + event.getEventBroadcaster(), index++, eventIndex, eventStatus);
 			++eventIndex;
 			lastEventDate = eventDate;
+		}
+
+		if (!isAnyEvent) {
+			addNoEventFoundMessageToTable(tableLayout);
 		}
 	}
 
@@ -169,7 +176,7 @@ public class EventsActivity extends BaseActivity {
 		final TableRow row = new TableRow(this);
 		row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT));
 		final TextView view = new TextView(this);
-		final String value = getString(R.string.warning_message);
+		final String value = getString(R.string.no_event_message);
 		view.setText(value);
 		view.setTextColor(Color.YELLOW);
 		row.addView(view);
