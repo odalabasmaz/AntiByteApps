@@ -62,6 +62,9 @@ public class EventsActivity extends BaseActivity {
 		if (events == null) {
 			addWarningMessageToTable(tableLayout);
 			return;
+		} else if (events.isEmpty()) {
+			addNoEventFoundMessageToTable(tableLayout);
+			return;
 		}
 
 		boolean showPastEvents = false;
@@ -152,6 +155,17 @@ public class EventsActivity extends BaseActivity {
 	}
 
 	private void addWarningMessageToTable(TableLayout tableLayout) {
+		final TableRow row = new TableRow(this);
+		row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT));
+		final TextView view = new TextView(this);
+		final String value = getString(R.string.warning_message);
+		view.setText(value);
+		view.setTextColor(Color.YELLOW);
+		row.addView(view);
+		tableLayout.addView(row, 0);
+	}
+
+	private void addNoEventFoundMessageToTable(TableLayout tableLayout) {
 		final TableRow row = new TableRow(this);
 		row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT));
 		final TextView view = new TextView(this);

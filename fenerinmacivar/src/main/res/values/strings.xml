@@ -3,6 +3,7 @@
 	<string name="action_settings">Settings</string>
 	<string name="title_activity_events">Maç Programı</string>
 	<string name="warning_message">\n\n\tMaç bilgileri alınamadı,\n\tİnternet bağlantınızı kontrol edin.</string>
+	<string name="no_event_message">\n\n\tEtkinlik bulunamadı.</string>
 
 	<string name="title_activity_test">test</string>
 	<string name="dummy_button">Dummy Button</string>
