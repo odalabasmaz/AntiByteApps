@@ -1,6 +1,7 @@
 <resources>
-	<string name="app_name">SlopingMaze</string>
+	<string name="app_name">Sloping Maze</string>
 
-	<string name="hello_world">Hello world!</string>
+	<string name="hello_world">Welcome to Sloping Maze game..</string>
 	<string name="action_settings">Settings</string>
+	<string name="title_activity_game_board">Game Board</string>
 </resources>

@@ -1,17 +1,33 @@
 package com.orhundalabasmaz.antibyteapps.slopingmaze;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.orhundalabasmaz.antibyteapps.middleware.base.BaseActivity;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+	}
+
+	public void onPlayNow(View view) {
+		final Map<String, Serializable> objects = new HashMap<>();
+		startNextActivity(GameBoardActivity.class, objects);
 	}
 
 	@Override

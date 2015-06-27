@@ -1,17 +1,57 @@
 package com.orhundalabasmaz.antibyteapps.slopingmaze;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.orhundalabasmaz.antibyteapps.middleware.base.BaseActivity;
 
-public class GameBoardActivity extends ActionBarActivity {
+
+public class GameBoardActivity extends BaseActivity {
+	private Sensor mSensor;
+	private SensorManager mSensorManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_board);
+		initSensor();
+	}
+
+	private void initSensor() {
+		mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+		mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+//		mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+
+		mSensorManager.registerListener(new SensorEventListener() {
+			@Override
+			public void onSensorChanged(SensorEvent event) {
+				if (event.sensor == mSensor) {
+					findTextViewById(R.id.infoText).setText("Info: " + event.values[0]);
+
+				}
+
+				//todo if reaches the edges
+				if (false) {
+					mSensorManager.unregisterListener(this);
+				}
+			}
+
+			@Override
+			public void onAccuracyChanged(Sensor sensor, int accuracy) {
+			}
+		}, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+
 	}
 
 	@Override
