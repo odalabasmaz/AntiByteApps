@@ -1,9 +1,14 @@
 package com.orhundalabasmaz.antibyteapps.fenerinmacivar;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -18,17 +23,26 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 @SuppressWarnings("unchecked")
 public class EventsActivity extends BaseActivity {
+	private static final String TAB = "\t";
+	private static final String TAB2 = "\t\t";
+	private static final String NEW_LINE = "\n";
+	private static final int COLOR_BLUE = Color.parseColor("#1F246A");
+	private static final int COLOR_YELLOW = Color.parseColor("#D4C968"); //E9DB5B
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_events);
+		initIcons();
 		initEvents();
 	}
 
@@ -55,6 +69,16 @@ public class EventsActivity extends BaseActivity {
 	private static Calendar now;
 	private static final Locale LOCALE_TR = new Locale("tr", "TR");
 	private static final DateFormat sdf = new SimpleDateFormat("yyyyMMdd", LOCALE_TR);
+
+	private String getEventString(MatchEvent event) {
+		final StringBuilder sb = new StringBuilder();
+		sb.append(event.getEventHeader()).append(NEW_LINE)
+				.append(TAB2).append(event.getEventName()).append(NEW_LINE)
+				.append(TAB2).append(event.getEventPlaceAndTime()).append(NEW_LINE);
+		if (StringUtils.isNotBlank(event.getEventBroadcaster()))
+			sb.append(TAB2).append(event.getEventBroadcaster()).append(NEW_LINE);
+		return sb.toString();
+	}
 
 	private void initEvents() {
 		final TableLayout tableLayout = findTableLayoutById(R.id.table);
@@ -83,12 +107,15 @@ public class EventsActivity extends BaseActivity {
 			}
 
 			if (!eventDate.equals(lastEventDate))
-				addValue(tableLayout, eventDate, index++, eventIndex, eventStatus);
-			addValue(tableLayout, TAB + event.getEventHeader(), index++, eventIndex, eventStatus);
+				addDateValue(tableLayout, eventDate, index++);
+			/*addValue(tableLayout, TAB + event.getEventHeader(), index++, eventIndex, eventStatus);
 			addValue(tableLayout, TAB2 + event.getEventName(), index++, eventIndex, eventStatus);
 			addValue(tableLayout, TAB2 + event.getEventPlaceAndTime(), index++, eventIndex, eventStatus);
 			if (StringUtils.isNotBlank(event.getEventBroadcaster()))
-				addValue(tableLayout, TAB2 + event.getEventBroadcaster(), index++, eventIndex, eventStatus);
+				addValue(tableLayout, TAB2 + event.getEventBroadcaster(), index++, eventIndex, eventStatus);*/
+			final String eventString = getEventString(event);
+			addValue(tableLayout, eventString, index++, eventIndex, EventStatus.FUTURE);
+
 			++eventIndex;
 			lastEventDate = eventDate;
 		}
@@ -130,34 +157,113 @@ public class EventsActivity extends BaseActivity {
 		else return -1;
 	}
 
+	private enum EVENT_TYPE {FOOTBALL, BASKETBALL, VOLLEYBALL, DEFAULT}
+
+	private Map<EVENT_TYPE, Bitmap> EVENT_ICONS = new HashMap<>();
+
+	private void initIcons() {
+		int width = 150;
+		int height = 150;
+		Bitmap bmp;
+		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.football);
+		EVENT_ICONS.put(EVENT_TYPE.FOOTBALL, Bitmap.createScaledBitmap(bmp, width, height, true));
+		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.basketball);
+		EVENT_ICONS.put(EVENT_TYPE.BASKETBALL, Bitmap.createScaledBitmap(bmp, width, height, true));
+		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.volleyball);
+		EVENT_ICONS.put(EVENT_TYPE.VOLLEYBALL, Bitmap.createScaledBitmap(bmp, width, height, true));
+		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.fb5);
+		EVENT_ICONS.put(EVENT_TYPE.DEFAULT, Bitmap.createScaledBitmap(bmp, width, height, true));
+	}
+
+	private ImageView getIconForEvent(EventsActivity activity, EVENT_TYPE eventType) {
+		final ImageView icon = new ImageView(activity);
+		final Bitmap eventIcon = EVENT_ICONS.get(eventType);
+		icon.setImageBitmap(eventIcon);
+		return icon;
+	}
+
+	private static final List<String> FOOTBALL_EVENT_VALUES = new ArrayList<>();
+	private static final List<String> BASKETBALL_EVENT_VALUES = new ArrayList<>();
+	private static final List<String> VOLLEYBALL_EVENT_VALUES = new ArrayList<>();
+
+	static {
+		FOOTBALL_EVENT_VALUES.add("futbol");
+		FOOTBALL_EVENT_VALUES.add("spor toto");
+		FOOTBALL_EVENT_VALUES.add("süper lig");
+		FOOTBALL_EVENT_VALUES.add("uefa avrupa ligi");
+
+		BASKETBALL_EVENT_VALUES.add("basketbol");
+		BASKETBALL_EVENT_VALUES.add("turkish airlines euroleague");
+		BASKETBALL_EVENT_VALUES.add("euroleague");
+		BASKETBALL_EVENT_VALUES.add("kadınlar");
+
+		VOLLEYBALL_EVENT_VALUES.add("voleybol");
+		VOLLEYBALL_EVENT_VALUES.add("cev");
+	}
+
+	private EVENT_TYPE determineEventType(final String eventString) {
+		final String eventValue = eventString.toLowerCase(LOCALE_TR);
+		for (String value : FOOTBALL_EVENT_VALUES) {
+			if (eventValue.contains(value)) return EVENT_TYPE.FOOTBALL;
+		}
+		for (String value : BASKETBALL_EVENT_VALUES) {
+			if (eventValue.contains(value)) return EVENT_TYPE.BASKETBALL;
+		}
+		for (String value : VOLLEYBALL_EVENT_VALUES) {
+			if (eventValue.contains(value)) return EVENT_TYPE.VOLLEYBALL;
+		}
+		return EVENT_TYPE.DEFAULT;
+	}
+
 	private void addValue(final TableLayout tableLayout, final String value,
 	                      final int index, final int eventIndex, final EventStatus eventStatus) {
+		final EVENT_TYPE eventType = determineEventType(value);
+		final TableRow row = new TableRow(this);
+		final LinearLayout rowLayout = new LinearLayout(this);
+		final ImageView iconView = getIconForEvent(this, eventType);
+		TextView textView = new TextView(this);
+		textView.setText(value);
+		final LinearLayout.LayoutParams layoutParams =
+				new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+						LinearLayout.LayoutParams.WRAP_CONTENT);
+		layoutParams.setMargins(20, 40, 20, 0);
+		iconView.setLayoutParams(layoutParams);
+
+		rowLayout.addView(iconView);
+		rowLayout.addView(textView);
+		row.addView(rowLayout);
+		tableLayout.addView(row, index);
+
+		switch (eventStatus) {
+			case PAST:
+				textView.setTextColor(Color.WHITE);
+				row.setBackgroundColor(Color.GRAY);
+				break;
+			case PRESENT:
+				textView.setTextColor(Color.BLACK);
+				row.setBackgroundColor(Color.GREEN);
+				break;
+			case FUTURE:
+				if (eventIndex % 2 == 0) {
+					textView.setTextColor(COLOR_BLUE);
+					row.setBackgroundColor(COLOR_YELLOW);
+				} else {
+					textView.setTextColor(COLOR_YELLOW);
+					row.setBackgroundColor(COLOR_BLUE);
+				}
+				break;
+			default:
+		}
+	}
+
+	private void addDateValue(final TableLayout tableLayout, final String value, final int index) {
 		TableRow row = new TableRow(this);
 		row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT));
 		TextView view = new TextView(this);
 		view.setText(value);
 		row.addView(view);
-		switch (eventStatus) {
-			case PAST:
-				view.setTextColor(Color.WHITE);
-				row.setBackgroundColor(Color.GRAY);
-				break;
-			case PRESENT:
-				view.setTextColor(Color.BLACK);
-				row.setBackgroundColor(Color.GREEN);
-				break;
-			case FUTURE:
-				if (eventIndex % 2 == 0) {
-					view.setTextColor(Color.BLUE);
-					row.setBackgroundColor(Color.YELLOW);
-				} else {
-					view.setTextColor(Color.YELLOW);
-					row.setBackgroundColor(Color.BLUE);
-				}
-				break;
-			default:
-
-		}
+		view.setTextColor(Color.WHITE);
+		row.setBackgroundColor(Color.GRAY);
 		tableLayout.addView(row, index);
 	}
 
