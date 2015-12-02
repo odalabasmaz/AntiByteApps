@@ -157,7 +157,7 @@ public class EventsActivity extends BaseActivity {
 		else return -1;
 	}
 
-	private enum EVENT_TYPE {FOOTBALL, BASKETBALL, VOLLEYBALL, DEFAULT}
+	private enum EVENT_TYPE {FOOTBALL, BASKETBALL, VOLLEYBALL, TABLE_TENNIS, DEFAULT}
 
 	private Map<EVENT_TYPE, Bitmap> EVENT_ICONS = new HashMap<>();
 
@@ -165,12 +165,14 @@ public class EventsActivity extends BaseActivity {
 		int width = 150;
 		int height = 150;
 		Bitmap bmp;
-		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.football);
+		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.football3);
 		EVENT_ICONS.put(EVENT_TYPE.FOOTBALL, Bitmap.createScaledBitmap(bmp, width, height, true));
-		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.basketball);
+		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.basketball2);
 		EVENT_ICONS.put(EVENT_TYPE.BASKETBALL, Bitmap.createScaledBitmap(bmp, width, height, true));
-		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.volleyball);
+		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.volleyball2);
 		EVENT_ICONS.put(EVENT_TYPE.VOLLEYBALL, Bitmap.createScaledBitmap(bmp, width, height, true));
+		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.table_tennis);
+		EVENT_ICONS.put(EVENT_TYPE.TABLE_TENNIS, Bitmap.createScaledBitmap(bmp, width, height, true));
 		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.fb5);
 		EVENT_ICONS.put(EVENT_TYPE.DEFAULT, Bitmap.createScaledBitmap(bmp, width, height, true));
 	}
@@ -185,32 +187,35 @@ public class EventsActivity extends BaseActivity {
 	private static final List<String> FOOTBALL_EVENT_VALUES = new ArrayList<>();
 	private static final List<String> BASKETBALL_EVENT_VALUES = new ArrayList<>();
 	private static final List<String> VOLLEYBALL_EVENT_VALUES = new ArrayList<>();
+	private static final List<String> TABLE_TENNIS_EVENT_VALUES = new ArrayList<>();
 
 	static {
 		FOOTBALL_EVENT_VALUES.add("futbol");
-		FOOTBALL_EVENT_VALUES.add("spor toto");
 		FOOTBALL_EVENT_VALUES.add("süper lig");
 		FOOTBALL_EVENT_VALUES.add("uefa avrupa ligi");
 
 		BASKETBALL_EVENT_VALUES.add("basketbol");
-		BASKETBALL_EVENT_VALUES.add("turkish airlines euroleague");
 		BASKETBALL_EVENT_VALUES.add("euroleague");
-		BASKETBALL_EVENT_VALUES.add("kadınlar");
 
 		VOLLEYBALL_EVENT_VALUES.add("voleybol");
 		VOLLEYBALL_EVENT_VALUES.add("cev");
+
+		TABLE_TENNIS_EVENT_VALUES.add("masa tenisi");
 	}
 
 	private EVENT_TYPE determineEventType(final String eventString) {
 		final String eventValue = eventString.toLowerCase(LOCALE_TR);
-		for (String value : FOOTBALL_EVENT_VALUES) {
-			if (eventValue.contains(value)) return EVENT_TYPE.FOOTBALL;
+		for (String value : TABLE_TENNIS_EVENT_VALUES) {
+			if (eventValue.contains(value)) return EVENT_TYPE.TABLE_TENNIS;
+		}
+		for (String value : VOLLEYBALL_EVENT_VALUES) {
+			if (eventValue.contains(value)) return EVENT_TYPE.VOLLEYBALL;
 		}
 		for (String value : BASKETBALL_EVENT_VALUES) {
 			if (eventValue.contains(value)) return EVENT_TYPE.BASKETBALL;
 		}
-		for (String value : VOLLEYBALL_EVENT_VALUES) {
-			if (eventValue.contains(value)) return EVENT_TYPE.VOLLEYBALL;
+		for (String value : FOOTBALL_EVENT_VALUES) {
+			if (eventValue.contains(value)) return EVENT_TYPE.FOOTBALL;
 		}
 		return EVENT_TYPE.DEFAULT;
 	}
