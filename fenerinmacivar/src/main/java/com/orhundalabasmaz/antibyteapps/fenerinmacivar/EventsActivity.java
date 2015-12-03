@@ -3,9 +3,12 @@ package com.orhundalabasmaz.antibyteapps.fenerinmacivar;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,6 +40,8 @@ public class EventsActivity extends BaseActivity {
 	private static final String NEW_LINE = "\n";
 	private static final int COLOR_BLUE = Color.parseColor("#1F246A");
 	private static final int COLOR_YELLOW = Color.parseColor("#D4C968"); //E9DB5B
+	private static final int COLOR_GREEN = Color.parseColor("#71E600");
+	private static final int COLOR_ICON = Color.parseColor("#4B9900");
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,16 +60,6 @@ public class EventsActivity extends BaseActivity {
 				adUnitId,
 				deviceId);
 	}
-
-/*	private void initEvents_old() {
-		final List<MatchEvent> events = (List<MatchEvent>) getIntent().getSerializableExtra("EVENTS");
-		final ExpandableListView listView = findExpandableListViewById(R.id.listView);
-		for (MatchEvent event : events) {
-			TextView view = new TextView(this);
-			view.setText(event.getEventName());
-			listView.addView(view);
-		}
-	}*/
 
 	private static Calendar now;
 	private static final Locale LOCALE_TR = new Locale("tr", "TR");
@@ -91,7 +86,6 @@ public class EventsActivity extends BaseActivity {
 		boolean isAnyEvent = false;
 		boolean showPastEvents = false;
 		now = Calendar.getInstance();
-		int index = 0;
 		int eventIndex = 0;
 		EventStatus eventStatus;
 		String lastEventDate = null;
@@ -107,14 +101,9 @@ public class EventsActivity extends BaseActivity {
 			}
 
 			if (!eventDate.equals(lastEventDate))
-				addDateValue(tableLayout, eventDate, index++);
-			/*addValue(tableLayout, TAB + event.getEventHeader(), index++, eventIndex, eventStatus);
-			addValue(tableLayout, TAB2 + event.getEventName(), index++, eventIndex, eventStatus);
-			addValue(tableLayout, TAB2 + event.getEventPlaceAndTime(), index++, eventIndex, eventStatus);
-			if (StringUtils.isNotBlank(event.getEventBroadcaster()))
-				addValue(tableLayout, TAB2 + event.getEventBroadcaster(), index++, eventIndex, eventStatus);*/
-			final String eventString = getEventString(event);
-			addValue(tableLayout, eventString, index++, eventIndex, EventStatus.FUTURE);
+				addDateValue(tableLayout, eventDate);
+
+			addValue(tableLayout, event, eventIndex, eventStatus);
 
 			++eventIndex;
 			lastEventDate = eventDate;
@@ -220,56 +209,105 @@ public class EventsActivity extends BaseActivity {
 		return EVENT_TYPE.DEFAULT;
 	}
 
-	private void addValue(final TableLayout tableLayout, final String value,
-	                      final int index, final int eventIndex, final EventStatus eventStatus) {
-		final EVENT_TYPE eventType = determineEventType(value);
+	private int getDpSizeInPixels(View view, int dps) {
+		final float scale = view.getContext().getResources().getDisplayMetrics().density;
+		return (int) (dps * scale + 0.5f);
+	}
+
+	private void addValue(final TableLayout tableLayout, final MatchEvent event,
+	                      final int eventIndex, final EventStatus eventStatus) {
+		final EVENT_TYPE eventType = determineEventType(event.toString());
+
 		final TableRow row = new TableRow(this);
+		row.setLayoutParams(new TableRow.LayoutParams(
+				TableRow.LayoutParams.MATCH_PARENT,
+				TableRow.LayoutParams.MATCH_PARENT));
+		tableLayout.addView(row);
+
 		final LinearLayout rowLayout = new LinearLayout(this);
-		final ImageView iconView = getIconForEvent(this, eventType);
-		TextView textView = new TextView(this);
-		textView.setText(value);
-		final LinearLayout.LayoutParams layoutParams =
-				new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-						LinearLayout.LayoutParams.WRAP_CONTENT);
-		layoutParams.setMargins(20, 40, 20, 0);
-		iconView.setLayoutParams(layoutParams);
-
-		rowLayout.addView(iconView);
-		rowLayout.addView(textView);
+		/*rowLayout.setLayoutParams(new LinearLayout.LayoutParams(
+				ViewGroup.LayoutParams.MATCH_PARENT,
+				ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));*/
+//		rowLayout.setWeightSum(1.0f);
 		row.addView(rowLayout);
-		tableLayout.addView(row, index);
 
+		final ImageView iconView = getIconForEvent(this, eventType);
+		int iconSize = getDpSizeInPixels(iconView, 50);
+		final LinearLayout.LayoutParams iconLayout = new LinearLayout.LayoutParams(
+				iconSize,
+				ViewGroup.LayoutParams.MATCH_PARENT);
+		iconLayout.gravity = Gravity.CENTER;
+		iconView.setLayoutParams(iconLayout);
+//		iconView.setBackgroundColor(COLOR_ICON);
+		rowLayout.addView(iconView);
+
+		final LinearLayout eventLayout = new LinearLayout(this);
+		final LinearLayout.LayoutParams eventLayoutParams = new LinearLayout.LayoutParams(
+				LinearLayout.LayoutParams.MATCH_PARENT,
+				LinearLayout.LayoutParams.WRAP_CONTENT);
+		eventLayoutParams.setMargins(getDpSizeInPixels(eventLayout, 5), 0, 0, 0);
+		eventLayout.setLayoutParams(eventLayoutParams);
+		eventLayout.setOrientation(LinearLayout.VERTICAL);
+		rowLayout.addView(eventLayout);
+
+		int valueIndex = 0;
+		addEventToLayout(eventLayout, rowLayout, eventStatus, event.getEventHeader(), eventIndex, valueIndex++);
+		addEventToLayout(eventLayout, rowLayout, eventStatus, event.getEventName(), eventIndex, valueIndex++);
+		addEventToLayout(eventLayout, rowLayout, eventStatus, event.getEventPlaceAndTime(), eventIndex, valueIndex++);
+		addEventToLayout(eventLayout, rowLayout, eventStatus, event.getEventBroadcaster(), eventIndex, valueIndex);
+	}
+
+	private void setColor(LinearLayout rowLayout, EventStatus eventStatus,
+	                      TextView textView, int rowIndex) {
 		switch (eventStatus) {
 			case PAST:
 				textView.setTextColor(Color.WHITE);
-				row.setBackgroundColor(Color.GRAY);
+				rowLayout.setBackgroundColor(Color.GRAY);
 				break;
 			case PRESENT:
 				textView.setTextColor(Color.BLACK);
-				row.setBackgroundColor(Color.GREEN);
+				rowLayout.setBackgroundColor(COLOR_GREEN);
 				break;
 			case FUTURE:
-				if (eventIndex % 2 == 0) {
+				if (rowIndex % 2 == 0) {
 					textView.setTextColor(COLOR_BLUE);
-					row.setBackgroundColor(COLOR_YELLOW);
+					rowLayout.setBackgroundColor(COLOR_YELLOW);
 				} else {
 					textView.setTextColor(COLOR_YELLOW);
-					row.setBackgroundColor(COLOR_BLUE);
+					rowLayout.setBackgroundColor(COLOR_BLUE);
 				}
 				break;
 			default:
 		}
 	}
 
-	private void addDateValue(final TableLayout tableLayout, final String value, final int index) {
-		TableRow row = new TableRow(this);
+	private void addEventToLayout(final LinearLayout eventLayout, LinearLayout rowLayout, EventStatus eventStatus,
+	                              final String value, int rowIndex, int valueIndex) {
+		if (valueIndex == 3 && StringUtils.isBlank(value))
+			return;
+		final TextView textView = new TextView(this);
+		final LinearLayout.LayoutParams textLayoutParams = new LinearLayout.LayoutParams(
+				LinearLayout.LayoutParams.MATCH_PARENT,
+				LinearLayout.LayoutParams.WRAP_CONTENT);
+		if (valueIndex == 0)
+			textView.setTypeface(Typeface.DEFAULT_BOLD);
+		else
+			textLayoutParams.setMargins(getDpSizeInPixels(textView, 10), 0, 0, 0);
+		textView.setLayoutParams(textLayoutParams);
+		textView.setText(value);
+		setColor(rowLayout, eventStatus, textView, rowIndex);
+		eventLayout.addView(textView);
+	}
+
+	private void addDateValue(final TableLayout tableLayout, final String value) {
+		final TableRow row = new TableRow(this);
 		row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT));
-		TextView view = new TextView(this);
+		final TextView view = new TextView(this);
 		view.setText(value);
 		row.addView(view);
 		view.setTextColor(Color.WHITE);
 		row.setBackgroundColor(Color.GRAY);
-		tableLayout.addView(row, index);
+		tableLayout.addView(row);
 	}
 
 	private void addWarningMessageToTable(TableLayout tableLayout) {
