@@ -39,7 +39,7 @@
 					android:id="@+id/imageView"
 					android:layout_width="62dp"
 					android:layout_height="match_parent"
-					android:src="@drawable/fb5"/>
+					android:src="@drawable/pitch"/>
 
 				<TextView
 					android:id="@+id/textView"

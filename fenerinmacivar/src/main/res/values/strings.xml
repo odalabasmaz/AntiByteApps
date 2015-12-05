@@ -4,7 +4,8 @@
 	<string name="title_activity_events">Maç Programı</string>
 	<string name="warning_message">\n\n\tMaç bilgileri alınamadı,\n\tİnternet bağlantınızı kontrol edin.</string>
 	<string name="no_event_message">\n\n\tEtkinlik bulunamadı.</string>
-	<string name="event_info_message">Maç bilgileri fenerbahce.org adresinden alınmıştır..  (v0.4)</string>
+	<!--<string name="event_info_message">Maç bilgileri fenerbahce.org adresinden alınmıştır..  (v0.4)</string>-->
+	<string name="event_info_message">Anti-Byte Apps © All rights reserved (v1.0)</string>
 
 	<string name="title_activity_test">test</string>
 	<string name="dummy_button">Dummy Button</string>

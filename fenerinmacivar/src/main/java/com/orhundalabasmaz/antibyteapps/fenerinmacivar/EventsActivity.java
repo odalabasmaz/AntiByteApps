@@ -40,7 +40,8 @@ public class EventsActivity extends BaseActivity {
 	private static final String NEW_LINE = "\n";
 	private static final int COLOR_BLUE = Color.parseColor("#1F246A");
 	private static final int COLOR_YELLOW = Color.parseColor("#D4C968"); //E9DB5B
-	private static final int COLOR_GREEN = Color.parseColor("#71E600");
+	private static final int COLOR_GREEN_LIGHT = Color.parseColor("#7CFF00");
+	private static final int COLOR_GREEN_DARK = Color.parseColor("#70E600");
 	private static final int COLOR_ICON = Color.parseColor("#4B9900");
 
 	@Override
@@ -162,8 +163,8 @@ public class EventsActivity extends BaseActivity {
 		EVENT_ICONS.put(EVENT_TYPE.VOLLEYBALL, Bitmap.createScaledBitmap(bmp, width, height, true));
 		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.table_tennis);
 		EVENT_ICONS.put(EVENT_TYPE.TABLE_TENNIS, Bitmap.createScaledBitmap(bmp, width, height, true));
-		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.fb5);
-		EVENT_ICONS.put(EVENT_TYPE.DEFAULT, Bitmap.createScaledBitmap(bmp, width, height, true));
+//		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.icon);
+//		EVENT_ICONS.put(EVENT_TYPE.DEFAULT, Bitmap.createScaledBitmap(bmp, width, height, true));
 	}
 
 	private ImageView getIconForEvent(EventsActivity activity, EVENT_TYPE eventType) {
@@ -266,7 +267,11 @@ public class EventsActivity extends BaseActivity {
 				break;
 			case PRESENT:
 				textView.setTextColor(Color.BLACK);
-				rowLayout.setBackgroundColor(COLOR_GREEN);
+				if (rowIndex % 2 == 0) {
+					rowLayout.setBackgroundColor(COLOR_GREEN_LIGHT);
+				} else {
+					rowLayout.setBackgroundColor(COLOR_GREEN_DARK);
+				}
 				break;
 			case FUTURE:
 				if (rowIndex % 2 == 0) {
