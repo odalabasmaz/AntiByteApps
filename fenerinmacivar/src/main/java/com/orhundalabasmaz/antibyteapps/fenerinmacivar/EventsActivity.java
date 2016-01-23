@@ -152,16 +152,16 @@ public class EventsActivity extends BaseActivity {
 	private Map<EVENT_TYPE, Bitmap> EVENT_ICONS = new HashMap<>();
 
 	private void initIcons() {
-		int width = 150;
-		int height = 150;
+		int width = 128;
+		int height = 128;
 		Bitmap bmp;
-		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.football3);
+		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.football);
 		EVENT_ICONS.put(EVENT_TYPE.FOOTBALL, Bitmap.createScaledBitmap(bmp, width, height, true));
-		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.basketball2);
+		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.basketball);
 		EVENT_ICONS.put(EVENT_TYPE.BASKETBALL, Bitmap.createScaledBitmap(bmp, width, height, true));
-		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.volleyball2);
+		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.volleyball);
 		EVENT_ICONS.put(EVENT_TYPE.VOLLEYBALL, Bitmap.createScaledBitmap(bmp, width, height, true));
-		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.table_tennis);
+		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.table_tenis);
 		EVENT_ICONS.put(EVENT_TYPE.TABLE_TENNIS, Bitmap.createScaledBitmap(bmp, width, height, true));
 //		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.icon);
 //		EVENT_ICONS.put(EVENT_TYPE.DEFAULT, Bitmap.createScaledBitmap(bmp, width, height, true));
@@ -183,12 +183,17 @@ public class EventsActivity extends BaseActivity {
 		FOOTBALL_EVENT_VALUES.add("futbol");
 		FOOTBALL_EVENT_VALUES.add("süper lig");
 		FOOTBALL_EVENT_VALUES.add("uefa avrupa ligi");
+		FOOTBALL_EVENT_VALUES.add("ztk");
+		FOOTBALL_EVENT_VALUES.add("ziraat türkiye");
+		FOOTBALL_EVENT_VALUES.add("ziraat türkiye kupası");
 
 		BASKETBALL_EVENT_VALUES.add("basketbol");
 		BASKETBALL_EVENT_VALUES.add("euroleague");
+		BASKETBALL_EVENT_VALUES.add("anadolu efes");
 
 		VOLLEYBALL_EVENT_VALUES.add("voleybol");
 		VOLLEYBALL_EVENT_VALUES.add("cev");
+		VOLLEYBALL_EVENT_VALUES.add("grundig");
 
 		TABLE_TENNIS_EVENT_VALUES.add("masa tenisi");
 	}
