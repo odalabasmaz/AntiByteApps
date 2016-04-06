@@ -33,6 +33,6 @@ proguard/
 # Log Files
 *.log
 
-
-*.idea
+# Intellij Idea Files
+.idea/
 *.iml
