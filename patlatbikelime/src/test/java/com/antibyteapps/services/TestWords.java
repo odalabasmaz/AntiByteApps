@@ -28,5 +28,6 @@ public class TestWords {
 		assertTrue(CLIENT.plainRequest("abart").contains("is not a word"));
 		assertTrue(CLIENT.plainRequest("abartı").contains("is a word"));
 		assertTrue(CLIENT.plainRequest("kalemi").contains("is not a word"));
+		assertTrue(CLIENT.plainRequest("atkı").contains("is a word"));
 	}
 }
