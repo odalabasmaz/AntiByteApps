@@ -40,12 +40,6 @@
 			android:name="com.google.android.gms.ads.AdActivity"
 			android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
 			android:theme="@android:style/Theme.Translucent"/>
-		<activity
-			android:name=".test"
-			android:configChanges="orientation|keyboardHidden|screenSize"
-			android:label="@string/title_activity_test"
-			android:theme="@style/FullscreenTheme">
-		</activity>
 	</application>
 
 </manifest>

@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-	compileSdkVersion 21
-	buildToolsVersion "21.1.2"
+	compileSdkVersion 24
+	buildToolsVersion "23.0.3"
 
 	defaultConfig {
 		applicationId "com.orhundalabasmaz.antibyteapps.fenerinmacivar"
 		minSdkVersion 15
-		targetSdkVersion 21
+		targetSdkVersion 24
 		versionCode 5
 		versionName "1.0"
 	}
@@ -27,5 +27,5 @@ dependencies {
 //	compile 'com.google.android.gms:play-services:7.3.0'
 	compile 'org.apache.commons:commons-lang3:3.1'
 	compile 'org.jsoup:jsoup:1.8.2'
-	compile 'com.android.support:support-v4:21.0.3'
+	compile 'com.android.support:support-v4:24.2.0'
 }
