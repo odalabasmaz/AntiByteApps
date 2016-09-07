@@ -3,7 +3,7 @@
       xmlns:tools="http://schemas.android.com/tools"
       android:background="#fffffb25"
       android:foreground="#ff0a1add"
-      tools:context="com.orhundalabasmaz.antibyteapps.fenerinmacivar.EventsActivity">
+      tools:context="com.antibyteapps.fenerinmacivar.EventsActivity">
 
 	<item
 		android:id="@+id/action_settings"

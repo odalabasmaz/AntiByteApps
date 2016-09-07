@@ -1,20 +1,19 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/scrollView"
-            android:layout_gravity="end">
+<ScrollView android:id="@+id/scrollView"
+			xmlns:android="http://schemas.android.com/apk/res/android"
+			xmlns:tools="http://schemas.android.com/tools"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_gravity="end">
 
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	              xmlns:tools="http://schemas.android.com/tools"
-	              android:layout_width="match_parent"
-	              android:layout_height="wrap_content"
-	              android:paddingLeft="@dimen/activity_horizontal_margin"
-	              android:paddingRight="@dimen/activity_horizontal_margin"
-	              android:paddingTop="@dimen/activity_vertical_margin"
-	              android:paddingBottom="@dimen/activity_vertical_margin"
-	              android:orientation="vertical"
-	              tools:context="com.orhundalabasmaz.antibyteapps.matchitifyoucan.activity.OptionsActivity">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:paddingBottom="@dimen/activity_vertical_margin"
+		android:paddingLeft="@dimen/activity_horizontal_margin"
+		android:paddingRight="@dimen/activity_horizontal_margin"
+		android:paddingTop="@dimen/activity_vertical_margin"
+		tools:context="com.antibyteapps.matchitifyoucan.activity.OptionsActivity">
 
 		<LinearLayout
 			android:layout_width="match_parent"
@@ -22,40 +21,40 @@
 			android:orientation="vertical">
 
 			<TextView
+				android:id="@+id/tv_gameBoard"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceMedium"
-				android:text="Game board"
-				android:id="@+id/tv_gameBoard"
-				android:layout_alignParentTop="true"
 				android:layout_alignParentLeft="true"
-				android:layout_alignParentStart="true"/>
+				android:layout_alignParentStart="true"
+				android:layout_alignParentTop="true"
+				android:text="Game board"
+				android:textAppearance="?android:attr/textAppearanceMedium"/>
 
 			<RadioGroup
 				android:id="@+id/rg_gameBoard"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_below="@+id/textView2"
 				android:layout_alignParentLeft="true"
-				android:layout_alignParentStart="true">
+				android:layout_alignParentStart="true"
+				android:layout_below="@+id/textView2">
 
 				<RadioButton
+					android:id="@+id/rb_2x2"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="2 x 2"
-					android:id="@+id/rb_2x2"/>
+					android:text="2 x 2"/>
 
 				<RadioButton
+					android:id="@+id/rb_4x4"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="4 x 4"
-					android:id="@+id/rb_4x4"/>
+					android:text="4 x 4"/>
 
 				<RadioButton
+					android:id="@+id/rb_6x6"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="6 x 6"
-					android:id="@+id/rb_6x6"/>
+					android:text="6 x 6"/>
 			</RadioGroup>
 		</LinearLayout>
 
@@ -66,46 +65,46 @@
 			android:orientation="vertical">
 
 			<TextView
+				android:id="@+id/tv_type"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceMedium"
-				android:text="Game Type"
-				android:id="@+id/tv_type"
-				android:layout_alignParentTop="true"
 				android:layout_alignParentLeft="true"
-				android:layout_alignParentStart="true"/>
+				android:layout_alignParentStart="true"
+				android:layout_alignParentTop="true"
+				android:text="Game Type"
+				android:textAppearance="?android:attr/textAppearanceMedium"/>
 
 			<RadioGroup
 				android:id="@+id/rg_gameType"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_below="@+id/textView2"
 				android:layout_alignParentLeft="true"
-				android:layout_alignParentStart="true">
+				android:layout_alignParentStart="true"
+				android:layout_below="@+id/textView2">
 
 				<RadioButton
+					android:id="@+id/rb_numbers"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Numbers"
-					android:id="@+id/rb_numbers"/>
+					android:text="Numbers"/>
 
 				<RadioButton
+					android:id="@+id/rb_alphaNumeric"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="AlphaNumeric"
-					android:id="@+id/rb_alphaNumeric"/>
+					android:text="AlphaNumeric"/>
 
 				<RadioButton
+					android:id="@+id/rb_image"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Image"
-					android:id="@+id/rb_image"/>
+					android:text="Image"/>
 
 				<RadioButton
+					android:id="@+id/rb_sound"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Sound"
-					android:id="@+id/rb_sound"/>
+					android:text="Sound"/>
 			</RadioGroup>
 		</LinearLayout>
 
@@ -116,46 +115,46 @@
 			android:orientation="vertical">
 
 			<TextView
+				android:id="@+id/tv_level"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceMedium"
-				android:text="Game Level"
-				android:id="@+id/tv_level"
-				android:layout_alignParentTop="true"
 				android:layout_alignParentLeft="true"
-				android:layout_alignParentStart="true"/>
+				android:layout_alignParentStart="true"
+				android:layout_alignParentTop="true"
+				android:text="Game Level"
+				android:textAppearance="?android:attr/textAppearanceMedium"/>
 
 			<RadioGroup
 				android:id="@+id/rg_gameLevel"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_below="@+id/textView2"
 				android:layout_alignParentLeft="true"
-				android:layout_alignParentStart="true">
+				android:layout_alignParentStart="true"
+				android:layout_below="@+id/textView2">
 
 				<RadioButton
+					android:id="@+id/rb_easy"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Easy"
-					android:id="@+id/rb_easy"/>
+					android:text="Easy"/>
 
 				<RadioButton
+					android:id="@+id/rb_medium"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Medium"
-					android:id="@+id/rb_medium"/>
+					android:text="Medium"/>
 
 				<RadioButton
+					android:id="@+id/rb_hard"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Hard"
-					android:id="@+id/rb_hard"/>
+					android:text="Hard"/>
 
 				<RadioButton
+					android:id="@+id/rb_impossible"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Impossible"
-					android:id="@+id/rb_impossible"/>
+					android:text="Impossible"/>
 			</RadioGroup>
 		</LinearLayout>
 
@@ -165,11 +164,11 @@
 			android:orientation="vertical">
 
 			<Button
+				android:id="@+id/bt_ok"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="OK"
 				android:onClick="setOptions"
-				android:id="@+id/bt_ok"/>
+				android:text="OK"/>
 		</LinearLayout>
 	</LinearLayout>
 </ScrollView>

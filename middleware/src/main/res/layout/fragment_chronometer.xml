@@ -2,7 +2,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="fill_parent"
              android:layout_height="fill_parent"
-             tools:context="com.orhundalabasmaz.antibyteapps.middleware.fragment.ChronometerFragment">
+             tools:context="com.antibyteapps.middleware.fragment.ChronometerFragment">
 
 	<RelativeLayout
 		android:id="@+id/chronometerFragmentLayout"
@@ -24,7 +24,7 @@
 				android:text="Time Elapsed: "
 				android:id="@+id/counter"/>
 
-			<com.orhundalabasmaz.antibyteapps.middleware.view.PausableChronometer
+			<com.antibyteapps.middleware.view.PausableChronometer
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:id="@+id/chronometer"

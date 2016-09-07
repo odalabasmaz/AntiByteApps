@@ -2,7 +2,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="com.orhundalabasmaz.antibyteapps.matchitifyoucan.activity.WelcomeActivity">
+                tools:context="com.antibyteapps.matchitifyoucan.activity.WelcomeActivity">
 
 	<RelativeLayout
 		android:layout_width="match_parent"
@@ -50,7 +50,7 @@
 		android:layout_height="wrap_content"
 		android:layout_centerHorizontal="true"
 		android:layout_alignParentBottom="true"
-		android:name="com.orhundalabasmaz.antibyteapps.middleware.fragment.AdsFragment"
+		android:name="com.antibyteapps.middleware.fragment.AdsFragment"
 		tools:layout="@layout/fragment_ads"/>
 
 </RelativeLayout>

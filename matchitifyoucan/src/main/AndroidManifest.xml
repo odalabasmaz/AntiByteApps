@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.orhundalabasmaz.antibyteapps.matchitifyoucan">
+          package="com.antibyteapps.matchitifyoucan">
 
 	<!-- Include required permissions for Google Mobile Ads to run -->
 	<uses-permission android:name="android.permission.INTERNET"/>
@@ -19,7 +19,7 @@
 			android:value="@integer/google_play_services_version"/>
 
 		<activity
-			android:name=".activity.MainActivity"
+			android:name="com.antibyteapps.matchitifyoucan.activity.MainActivity"
 			android:label="@string/app_name">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
@@ -28,15 +28,15 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.SimpleGameActivity"
+			android:name="com.antibyteapps.matchitifyoucan.activity.SimpleGameActivity"
 			android:label="@string/title_activity_simple_game">
 		</activity>
 		<activity
-			android:name=".activity.WelcomeActivity"
+			android:name="com.antibyteapps.matchitifyoucan.activity.WelcomeActivity"
 			android:label="@string/title_activity_welcome">
 		</activity>
 		<activity
-			android:name=".activity.OptionsActivity"
+			android:name="com.antibyteapps.matchitifyoucan.activity.OptionsActivity"
 			android:label="@string/title_activity_options">
 		</activity>
 

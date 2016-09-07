@@ -10,7 +10,7 @@
               android:layout_alignParentTop="true"
               android:layout_centerHorizontal="true"
               android:weightSum="1"
-              tools:context="com.orhundalabasmaz.antibyteapps.matchitifyoucan.activity.SimpleGameActivity">
+              tools:context="com.antibyteapps.matchitifyoucan.activity.SimpleGameActivity">
 
 	<LinearLayout
 		android:orientation="vertical"
@@ -23,7 +23,7 @@
 		<fragment
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:name="com.orhundalabasmaz.antibyteapps.middleware.fragment.ChronometerFragment"
+			android:name="com.antibyteapps.middleware.fragment.ChronometerFragment"
 			android:id="@+id/fragment"
 			android:layout_weight="0.50"/>
 	</LinearLayout>

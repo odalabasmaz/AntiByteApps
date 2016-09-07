@@ -1,1 +1,1 @@
-include ':app', ':middleware', ':matchitifyoucan', ':fenerinmacivar', ':fenerinmacivar', ':slopingmaze', ':patlatbikelime'
+include ':app', ':middleware', ':matchitifyoucan', ':fenerinmacivar', ':slopingmaze'

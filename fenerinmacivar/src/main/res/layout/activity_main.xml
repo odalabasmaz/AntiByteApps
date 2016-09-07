@@ -4,7 +4,7 @@
 				android:layout_height="match_parent"
 				android:background="@drawable/fb_welcome"
 				android:orientation="vertical"
-				tools:context=".MainActivity">
+				tools:context="com.antibyteapps.fenerinmacivar.MainActivity">
 
 	<ProgressBar
 		android:id="@+id/progressBar2"

@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 //apply plugin: 'maven'
 
 // maven configuration
-group = "com.orhundalabasmaz.antibyteapps"
+group = "com.antibyteapps"
 //archivesBaseName = "middleware"  // not needed anymore
 version = "0.1"
 
